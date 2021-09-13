@@ -5,8 +5,8 @@ const bcrypt = require('bcryptjs');
 const UserSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: [true, "All stumboloids must have a name"],
-    minlength: [3, "stumboloids Name must have at least 3 characters."],
+    required: [true, "All stumboloids must have a first name"],
+    minlength: [3, "stumboloid's First Name must have at least 3 characters."],
   },
   email: {
     type: String,
@@ -23,22 +23,7 @@ const UserSchema = new mongoose.Schema({
     required: [true, "All stumboloids must have a password"],
     minlength: [8, "Password must be 8 characters or longer"]
   }
-  //   rating: {
-  //     type: Number,
-  //     default: 0
-  //   },
-  //   comments: {
-  //     type: [String]
-  //   },
-  //   movieTitle: {
-  //     type: String
-  //   },
-  //   movieDescription: {
-  //     type: String
-  //   },
-  //   movieQuestion: {
-  //     type: String
-  //   },
+ 
 }, { timestamps: true });
 
 

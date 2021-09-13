@@ -1,0 +1,34 @@
+.chat-room-container {
+  left: 0;
+  right: 0;
+  top: 10;
+  bottom: 10;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  margin: 16px auto;
+  height: 500px;
+  width: 80%;
+}
+
+.chat-room-top-bar {
+  display: flex;
+  align-items: center;
+}
+
+.chat-room-top-bar h1 {
+  flex: 1;
+}
+
+.messages-container {
+  flex: 1;
+  min-height: 100px;
+  overflow: auto;
+  border-radius: 7px 7px 0 0;
+  margin-bottom: 8px;
+}
+
+.messages-list {
+  list-style-type: none;
+  padding: 0;
+}

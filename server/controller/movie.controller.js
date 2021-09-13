@@ -22,7 +22,23 @@ const getAllMovies = async (req, res) => {
   }
 }
 
+const updateExistingMovie = async (req, res) => {
+  try {
+    const updatedMovie = await Movie.findOneAndUpdate({ _id: req.params.id },
+      req.body,
+      {
+        new: true,
+        runValidators: true,
+        context: 'query'
+      })
+    res.json(updatedMovie);
+  } catch (error) {
+    res.status(400).json(error);
+  }
+};
+
 module.exports = {
   addNewMovie,
   getAllMovies,
+  updateExistingMovie,
 };

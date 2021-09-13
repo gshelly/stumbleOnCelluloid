@@ -26,23 +26,28 @@ const login = async (req, res) => {
   }
 
   if (queriedUser == null) {
-    res.json({ message: "Email is not registered" })
+    res.status(401).json({ message: "Email is not registered" })
     return;
   }
   else {
-    const passwordCheck = bcrypt.compareSync(body.password, queriedUser.password)
-    if (!passwordCheck) {
-      res.json({ message: "Email and password do not match" })
-      return;
+    if (body.password) {
+      const passwordCheck = bcrypt.compareSync(body.password, queriedUser.password)
+      if (!passwordCheck) {
+        res.status(402).json({ message: "Email and password do not match" })
+        return;
+      }
+      else {
+        // res.send("Welcome")
+        const userToken = jwt.sign({ id: queriedUser._id }, process.env.SECRET_KEY)
+        res.cookie("userToken", userToken, process.env.SECRET_KEY, {
+          httpOnly: true,
+          expires: new Date(Date.now() + 900000)
+        })
+          .json({ queriedUser })
+      }
     }
     else {
-      // res.send("Welcome")
-      const userToken = jwt.sign({ id: queriedUser._id }, process.env.SECRET_KEY)
-      res.cookie("userToken", userToken, process.env.SECRET_KEY, {
-        httpOnly: true,
-        expires: new Date(Date.now() + 900000)
-      })
-        .json({ message: "success" })
+      res.status(403).json({ message: "Password can't be blank" })
     }
   }
 }
@@ -52,9 +57,19 @@ const logout = (req, res) => {
   res.json({ message: "logout successful" })
 }
 
+const getAllUsers = async (req, res) => {
+  try {
+    const allUsers = await User.find()
+    res.json(allUsers);
+  } catch (error) {
+    res.status(400).json(error);
+  }
+};
+
 module.exports = {
   register,
   login,
-  logout
+  logout,
+  getAllUsers,
 }
 

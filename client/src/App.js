@@ -1,36 +1,38 @@
 import "./App.css";
-import { Router, Link } from "@reach/router";
-import Login from "./components/Login";
-import Register from "./components/Register";
-import PostForm from "./components/PostForm";
-import DisplayPosts from "./components/DisplayPosts";
-function App() {
+import { Switch, Route, Redirect } from 'react-router-dom';
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
+import "../node_modules/bootstrap/dist/js/bootstrap.bundle"
+import Navbar from './utils/Navbar';
+import Movie from "./components/Movie";
+import Registration from "./components/Registration";
+import Signin from "./components/Signin";
+import { withCookies } from 'react-cookie';
+import React, {useState} from "react";
+import PostComment from "./components/PostComment";
+import ChatRoom from "./components/chatComponents/ChatRoom/ChatRoom"
+
+
+function App(props) {
+  const { cookies } = props;
+  const [user, setUser] = useState("")
+  const [movieId, setMovieId] = useState("")
+
+  let isLoggedIn = cookies.get('userToken') ? true : false
+  
   return (
-    <div className="App">
-      <div>
-        <ul>
-          <li>
-            <Link to="/login">Login</Link>
-          </li>
-          <li>
-            <Link to="/register">Register</Link>
-          </li>
-          <li>
-            <Link to="/new-post">New Post</Link>
-          </li>
-          <li>
-            <Link to="/view-posts">View Posts</Link>
-          </li>
-        </ul>
-      </div>
-      <Router>
-        <Login path="/login" />
-        <Register path="/register" />
-        <PostForm path="/new-post" />
-        <DisplayPosts path="/view-posts" />
-      </Router>
-    </div>
+    <>
+    <Navbar  isLoggedIn= {isLoggedIn} user={user? user : localStorage.getItem("userName")}/>
+    <Switch>
+      <Route exact path="/" component={() => <Movie setMovieId={setMovieId} isLoggedIn= {isLoggedIn} />} ></Route>
+      <Route path="/registration" component={Registration} ></Route>
+      <Route path="/signin" component={() => <Signin setUser={setUser} />} ></Route>
+      <Route path="/postComment" component={() => <PostComment movieId={movieId} />} ></Route>
+      <Route exact path="/chatRoom" component={() => <ChatRoom movieQuestion={localStorage.getItem("MovieQestion")} user={user? user : localStorage.getItem("userName")} />} />
+      {/* {console.log("mq", movieQuestion)} */}
+      <Redirect to="/" />
+    </Switch>
+  </>
   );
 }
 
-export default App;
+export default withCookies(App);

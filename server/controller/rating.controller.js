@@ -19,9 +19,9 @@ const addNewRating = async (req, res) => {
   }
 };
 
-const getUserMovieRating = async (req, res) => {
+const getUserMovieRating = async (req, res) => { // getMovie Rating for specific movie and specific user
   try {
-    const movieRating = await Rating.find({ movie_id: req.params.movieId }).populate({
+    const movieRating = await Rating.find({ user_id: req.params.userId , movie_id: req.params.movieId}).populate({
       path: "movie_id",
       model: "Movie"
     }).populate(
@@ -30,7 +30,23 @@ const getUserMovieRating = async (req, res) => {
         model: "User"
       }
     ).exec();
-    console.log(movieRating);
+    res.json(movieRating);
+  } catch (error) {
+    res.status(400).json(error);
+  }
+};
+
+const getMovieRating = async (req, res) => { // getMovie Rating for specific movie
+  try {
+    const movieRating = await Rating.find({ movie_id: req.params.movieId}).populate({
+      path: "movie_id",
+      model: "Movie"
+    }).populate(
+      {
+        path: "user_id",
+        model: "User"
+      }
+    ).exec();
     res.json(movieRating);
   } catch (error) {
     res.status(400).json(error);
@@ -42,7 +58,6 @@ const updateExistingRating = async (req, res) => {
   const { body, params } = req;
 
   try {
-    console.log(req.body.id);
     const updateRating = await Rating.findOneAndUpdate({ _id: params.id },
       req.body,
       {
@@ -57,7 +72,7 @@ const updateExistingRating = async (req, res) => {
   }
 };
 
-const getMovieAverageRating = async (req, res) => {
+const updateMovieAverageRating = async (req, res) => {
   let average = await Rating.aggregate([
     { $match: { movie_id: new mongoose.Types.ObjectId(req.params.movieId) } },
     { $group: { _id: null, sumOfRatings: { $sum: '$rating' }, count: { $sum: 1 } } },
@@ -69,14 +84,14 @@ const getMovieAverageRating = async (req, res) => {
   let sumOfRatings = average.length > 0 ? Number(average[0].sumOfRatings) : 0
   let averageofRatings = average.length > 0 ? sumOfRatings / average[0].count : sumOfRatings
 
-  console.log(averageofRatings)
+  
   try {
 
     const updateRating = await Rating.updateMany({ movie_id: req.params.movieId },
       { $set: { movieAvgRating: Math.ceil(averageofRatings * 10) / 10 } },
       {
         upsert: true,
-        new: false,
+        new: true,
       })
     res.json(updateRating);
   } catch (error) {
@@ -88,5 +103,6 @@ module.exports = {
   addNewRating,
   getUserMovieRating,
   updateExistingRating,
-  getMovieAverageRating,
+  updateMovieAverageRating,
+  getMovieRating,
 };

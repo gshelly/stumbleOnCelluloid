@@ -6,9 +6,7 @@ const addNewPost = async (req, res) => {
   let newPost = new Post(body);
   const decodedJwt = jwt.decode(req.cookies.userToken, { complete: true });
   newPost.user_id = decodedJwt.payload.id;
-  console.log(params);
   newPost.movie_id = params.movieId
-  console.log(newPost);
   try {
     newPost = await newPost.save()
     res.json(newPost)
@@ -76,7 +74,6 @@ const deleteExistingComment = async (req, res) => {
   }
 };
 
-
 module.exports = {
   addNewPost,
   getAllMoviePosts,
@@ -84,5 +81,3 @@ module.exports = {
   updateExistingComment,
   deleteExistingComment,
 };
-
-// .populate({path: "user_id",model: "User"}).exec()
