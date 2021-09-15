@@ -6,8 +6,6 @@ import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import Link from "@material-ui/core/Link";
-// import Paper from "@material-ui/core/Paper";
-// import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
@@ -19,7 +17,7 @@ import background from "../images/InceptionBackground1.jpg"
 
 const useStyles = makeStyles(theme => ({
   root: {
-    height: "70vh",
+    height: "80vh",
     backgroundColor: "white",
     marginTop: '20px'
   },
@@ -93,17 +91,9 @@ const Signin = (props) => {
         else if (error.response.status === 403) {
           setPassErr(error.response.data.message)
         }
-        // console.log("error",error.response.status);
-        // setPassErr(error)
+       
       });
   };
-
-  // const handleLogout = () => {
-  //   axios
-  //     .post("http://localhost:8001/api/logout")
-  //     .then((response) => console.log(response))
-  //     .catch((err) => console.log(err));
-  // };
 
   return (
     <div style={{backgroundImage:`url(${background})`, backgroundSize:"cover", padding: "70px 0px"}}>
