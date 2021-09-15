@@ -12,13 +12,14 @@ import PostComment from "./components/PostComment";
 import ChatRoom from "./components/chatComponents/ChatRoom/ChatRoom"
 
 
+
 function App(props) {
   const { cookies } = props;
   const [user, setUser] = useState("")
   const [movieId, setMovieId] = useState("")
 
   let isLoggedIn = cookies.get('userToken') ? true : false
-  
+
   return (
     <>
     <Navbar  isLoggedIn= {isLoggedIn} user={user? user : localStorage.getItem("userName")}/>
@@ -28,7 +29,6 @@ function App(props) {
       <Route path="/signin" component={() => <Signin setUser={setUser} />} ></Route>
       <Route path="/postComment" component={() => <PostComment movieId={movieId} />} ></Route>
       <Route exact path="/chatRoom" component={() => <ChatRoom movieQuestion={localStorage.getItem("MovieQestion")} user={user? user : localStorage.getItem("userName")} />} />
-      {/* {console.log("mq", movieQuestion)} */}
       <Redirect to="/" />
     </Switch>
   </>

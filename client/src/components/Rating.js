@@ -97,6 +97,25 @@ function Rating(props) {
 
   return (
     <div className="rating-Wrapper">
+     
+      <div id="avg-rating">
+        <p>Movie Average Rating:  {displayMovieRating.movieAvgRating} 
+
+        {displayMovieRating.movieAvgRating > 0 ?
+       <ReactStars
+            count={localStorage.getItem("movieRating")}
+            value={localStorage.getItem("movieRating")}
+            isHalf={true}
+            size={24}
+            edit={false}
+            fullIcon={<i className="fa fa-star"></i>}
+            emptyIcon={<i className="far fa-star"></i>}
+            halfIcon={<i className="fa fa-star-half-alt"></i>}
+            activeColor="#ffd700" />
+        : null}
+        </p>
+      </div>
+
       <div id="user-rating">
         <p onClick={showAlertBox}>Your Rating
           {showAlert ? <AlertBox
@@ -118,23 +137,6 @@ function Rating(props) {
               fullIcon={<i className="fa fa-star"></i>}
               activeColor="#ffd700"
             /> 
-        </p>
-      </div>
-      <div id="avg-rating">
-        <p>Movie Average Rating:  {displayMovieRating.movieAvgRating} 
-
-        {displayMovieRating.movieAvgRating > 0 ?
-       <ReactStars
-            count={localStorage.getItem("movieRating")}
-            value={localStorage.getItem("movieRating")}
-            isHalf={true}
-            size={24}
-            edit={false}
-            fullIcon={<i className="fa fa-star"></i>}
-            emptyIcon={<i className="far fa-star"></i>}
-            halfIcon={<i className="fa fa-star-half-alt"></i>}
-            activeColor="#ffd700" />
-        : null}
         </p>
       </div>
 

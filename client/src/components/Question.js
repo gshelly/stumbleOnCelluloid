@@ -6,7 +6,7 @@ function Question(props) {
   
   return (
     <div className="stage">
-  <div className="stage-content"> <h4>{props.movieQuestion}</h4></div>
+  <div className="stage-content"> <p>{props.movieQuestion}</p></div>
   <label className="curtain-container">
     <div className="curtain-panel">
       <input type="checkbox" className="curtain-trigger" />

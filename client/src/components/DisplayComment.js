@@ -4,12 +4,11 @@ import axios from 'axios';
 import { Avatar, Grid, Paper } from "@material-ui/core";
 import CreateIcon from '@material-ui/icons/Create';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import imgLink from '../images/User.png'
 
 function DisplayComments(props) {
   const [displayMovieComments, setMovieComments] = useState([])
   const [reloadComments, setReloadsComments] = useState(props.reloadComments)
-  const imgLink =
-    "https://www.pngfind.com/pngs/m/470-4703547_icon-user-icon-hd-png-download.png";
   // const [showComment, setComment] = useState(false)
 
 
@@ -49,7 +48,7 @@ function DisplayComments(props) {
 
   return (
     <div>
-      <p style={{ textAlign: 'center', fontSize: '20pt', color: '#03412edc', paddingLeft: '30px' }}> User Comments </p>
+      <p style={{ textAlign: 'center', fontSize: '20pt', color: 'black', paddingLeft: '30px', fontWeight: "bolder" }}> User Comments </p>
       {displayMovieComments.map((user, index) => {
         return (
           <Paper className="display-comments" key={index}>

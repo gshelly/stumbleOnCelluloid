@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import socketIOClient from "socket.io-client";
 import axios from "axios";
+import userImage from "../../images/User.png"
 
 const USER_JOIN_CHAT_EVENT = "USER_JOIN_CHAT_EVENT";
 const USER_LEAVE_CHAT_EVENT = "USER_LEAVE_CHAT_EVENT";
@@ -9,21 +10,20 @@ const START_TYPING_MESSAGE_EVENT = "START_TYPING_MESSAGE_EVENT";
 const STOP_TYPING_MESSAGE_EVENT = "STOP_TYPING_MESSAGE_EVENT";
 const SOCKET_SERVER_URL = "http://localhost:8001";
 
+
 const useChat = (roomId, userName) => {
   const [messages, setMessages] = useState([]);
   const [users, setUsers] = useState([]);
   const [typingUsers, setTypingUsers] = useState([]);
-  const [user, setUser] = useState();
+  const [user, setUser] = useState({});
   const socketRef = useRef();
-  const imgLink =
-  "https://www.pngfind.com/pngs/m/470-4703547_icon-user-icon-hd-png-download.png";
 
   useEffect(() => {
     setUser({
       name: userName,
-      picture: imgLink
+      picture: {userImage}
     });
-    console.log("usename", userName);
+    // console.log("usename", userName);
   }, [userName]);
 
   useEffect(() => {
@@ -31,8 +31,8 @@ const useChat = (roomId, userName) => {
       const response = await axios.get(
         `${SOCKET_SERVER_URL}/rooms/${roomId}/users`
       );
-      console.log("sss",response.data)
       const result = response.data.users;
+      console.log("result Userrrrrrrr", result[0].picture);
       setUsers(result);
     };
 
@@ -45,7 +45,7 @@ const useChat = (roomId, userName) => {
         `${SOCKET_SERVER_URL}/rooms/${roomId}/messages`
       );
       const result = response.data.messages;
-      console.log("result",result);
+      // console.log("result",result);
       setMessages(result);
     };
 
@@ -70,6 +70,7 @@ const useChat = (roomId, userName) => {
     });
 
     socketRef.current.on(USER_LEAVE_CHAT_EVENT, (user) => {
+      console.log("usersxdxdxcxc", user);
       setUsers((users) => users.filter((u) => u.id !== user.id));
     });
 

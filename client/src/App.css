@@ -1,34 +1,36 @@
-@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Patua+One&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Patua+One&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 * {
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
   /* font-family: 'Permanent Marker', cursive; */
-  font-family: 'Patua One', cursive;
+  
 }
 
 .navbar {
-  background-color: #485461 !important;
-background-image: linear-gradient(315deg, #000000 0%, #0b0616 37%, #03412edc 100%);
-
+  background-color: #eb8479 !important;
   color: #efeef5dc;
-  font-size: 25pt;
+  font-family: 'Poppins', sans-serif;
 }
+
 .navbar-brand  {
-  font-size: 25pt;
-  font-weight: 800 !important;
-  color: white !important;
+  font-size: 20pt !important;
+  font-weight: bolder !important;
+  color: black !important;
   padding-left: 20px;
   /* font-family: 'Dancing Script', cursive; */
 }
 .navbar a {
   font-size: 1.3rem;
+  font-weight: bolder;
+  color: black !important;
   text-transform: capitalize !important;
 }
 .navbar a:hover {
-  color: #c90c0c !important;
+  color: #fff9f9 !important;
 }
 .nav-link {
   color: white !important;
@@ -38,27 +40,30 @@ background-image: linear-gradient(315deg, #000000 0%, #0b0616 37%, #03412edc 100
   font-weight: bold;
   border-bottom: 1px solid #565387;
 }
-/* .navbar-toggler-icon {
-  border: none ;
-} */
-/* .navbar-toggler {
-  border: none ;
-} */
+.navbar-toggler-icon {
+  border: black ;
+} 
+ .navbar-toggler {
+  border: black ;
+} 
+
 .navbar-btn {
   border: none;
-  color: white;
+  color: black;
   background-color: transparent;
-  font-size: 16pt;
+  font-size: 1.3rem;
+  font-weight: bolder;
 }
 .navbar-text {
-  color: white !important;
+  color: black !important;
   background-color: transparent;
-  font-size: 16pt;
+  font-size: 1.3rem;
   padding-right: 30px;
+  font-weight: bolder;
 }
 
 .navbar-btn:hover {
-  color: #c90c0c !important;
+  color: white !important;
 }
 
 
@@ -152,4 +157,3 @@ background-image: linear-gradient(315deg, #000000 0%, #0b0616 37%, #03412edc 100
     border-radius: 150px;
   }
 }
-

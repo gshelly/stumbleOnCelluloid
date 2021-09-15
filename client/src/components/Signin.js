@@ -15,12 +15,13 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { useHistory } from 'react-router-dom'
 import axios from "axios";
+import background from "../images/InceptionBackground1.jpg"
 
 const useStyles = makeStyles(theme => ({
   root: {
     height: "70vh",
     backgroundColor: "white",
-    marginTop: '50px'
+    marginTop: '20px'
   },
 
   paper: {
@@ -40,8 +41,15 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(3)
   },
   submit: {
-    margin: theme.spacing(3, 0, 2)
+    margin: theme.spacing(3, 0, 2),
+    backgroundColor: "#9dd0c8",
+    color: "black",
+    '&:hover': {
+      backgroundColor: '#eb8479',
+      color: 'black',
   },
+  },
+
   image: {
     backgroundImage: "url(https://source.unsplash.com/random)",
     backgroundRepeat: "no-repeat",
@@ -98,6 +106,7 @@ const Signin = (props) => {
   // };
 
   return (
+    <div style={{backgroundImage:`url(${background})`, backgroundSize:"cover", padding: "70px 0px"}}>
     <Container component="main" maxWidth="xs" className={classes.root}>
       <CssBaseline />
 
@@ -166,6 +175,7 @@ const Signin = (props) => {
         </form>
       </div>
     </Container>
+    </div>
   );
 };
 

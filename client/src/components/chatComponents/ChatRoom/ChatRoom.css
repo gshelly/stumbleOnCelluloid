@@ -18,6 +18,7 @@
 
 .chat-room-top-bar h1 {
   flex: 1;
+  margin-right: 150px;
 }
 
 .messages-container {
@@ -31,4 +32,17 @@
 .messages-list {
   list-style-type: none;
   padding: 0;
+}
+
+.room-name {
+  color: rgb(21, 15, 75);
+  font-size: 1.4em;
+  font-weight: bolder;
+}
+.display-chat-layout {
+  background-color: rgb(206, 195, 195) !important;
+
+  padding: 20px;
+  width: 900px;
+  margin: 40px auto;
 }

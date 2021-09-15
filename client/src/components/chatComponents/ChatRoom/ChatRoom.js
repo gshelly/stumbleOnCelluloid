@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
-
+import '../../../styles/MoviePage.css'
 import "./ChatRoom.css";
 import useChat from "../useChat";
 import ChatMessage from "../ChatMessage/ChatMessage";
 import useTyping from "../useTyping";
 import NewMessageForm from "../NewMessageForm/NewMessageForm";
 import TypingMessage from "../TypingMessage/TypingMessage";
-import Users from "../Users/Users";
+// import Users from "../Users/Users";
 import UserAvatar from "../UserAvatar/UserAvatar";
+import {Grid, Paper } from "@material-ui/core";
+import background from "../../../images/InceptionBackground1.jpg"
 // import queryString from "query-string"
 
 const ChatRoom = (props) => {
@@ -43,12 +45,20 @@ const ChatRoom = (props) => {
   }, [isTyping]);
 
   return (
-    <div className="chat-room-container">
+    <div style={{backgroundImage:`url(${background})`, backgroundSize:"cover", padding: "70px 0px"}}>
+    <Paper className="display-chat-layout">
+      <Grid container wrap="nowrap" spacing={2}>
       <div className="chat-room-top-bar">
-        <h1 className="room-name">Discussion Topic: {props.movieQuestion}</h1>
+        <p className="room-name">Discussion Topic: {props.movieQuestion}</p>
         {user && <UserAvatar user={user}></UserAvatar>}
       </div>
-      <Users users={users}></Users>
+      {/* <Grid item>
+      <h1 className="room-name">Discussion Topic: {props.movieQuestion}</h1>
+        {user && <UserAvatar user={user}></UserAvatar>}
+        </Grid> */}
+      </Grid>
+      
+      {/* <Users users={users}></Users> */}
       <div className="messages-container">
         <ol className="messages-list">
           {messages.map((message, i) => (
@@ -70,6 +80,7 @@ const ChatRoom = (props) => {
         handleStopTyping={stopTyping}
         handleSendMessage={handleSendMessage}
       ></NewMessageForm>
+    </Paper>
     </div>
   );
 };

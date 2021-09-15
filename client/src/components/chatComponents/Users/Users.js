@@ -4,9 +4,10 @@ import UserAvatar from "../UserAvatar/UserAvatar";
 import "./Users.css";
 
 const Users = ({ users }) => {
-  return users.length > 0 ? (
+  return users && users.length > 0 ? (
     <div>
       <h2>Also in this room:</h2>
+      {/* {console.log("users",users)} */}
       <ul className="user-list">
         {users.map((user, index) => (
           <li key={index} className="user-box">
