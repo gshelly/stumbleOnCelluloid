@@ -31,7 +31,7 @@ const PostComment = (props) => {
     e.preventDefault();
     if (!props.isEditFlow) {
       axios
-        .post("http://localhost:8001/api/movie/post/" + props.movieId, {
+        .post("http://localhost:8000/api/movie/post/" + props.movieId, {
           text: text
         }, {
           withCredentials: true,
@@ -49,7 +49,7 @@ const PostComment = (props) => {
     }
     else {
       axios
-        .put("http://localhost:8001/api/movie/post/edit/" + props.editedUser._id, {
+        .put("http://localhost:8000/api/movie/post/edit/" + props.editedUser._id, {
           text: text
         }, {
           withCredentials: true,

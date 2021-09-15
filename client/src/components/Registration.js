@@ -63,7 +63,7 @@ const Registration= () => {
     };
     
     try {
-      await axios.post("http://localhost:8001/api/register", postData);
+      await axios.post("http://localhost:8000/api/register", postData);
       history.push('/signin')
     } catch (err) {
       console.log(err.response.data.errors);

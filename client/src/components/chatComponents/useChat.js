@@ -8,7 +8,7 @@ const USER_LEAVE_CHAT_EVENT = "USER_LEAVE_CHAT_EVENT";
 const NEW_CHAT_MESSAGE_EVENT = "NEW_CHAT_MESSAGE_EVENT";
 const START_TYPING_MESSAGE_EVENT = "START_TYPING_MESSAGE_EVENT";
 const STOP_TYPING_MESSAGE_EVENT = "STOP_TYPING_MESSAGE_EVENT";
-const SOCKET_SERVER_URL = "http://localhost:8001";
+const SOCKET_SERVER_URL = "http://localhost:8000";
 
 
 const useChat = (roomId, userName) => {
@@ -32,7 +32,7 @@ const useChat = (roomId, userName) => {
         `${SOCKET_SERVER_URL}/rooms/${roomId}/users`
       );
       const result = response.data.users;
-      console.log("result Userrrrrrrr", result[0].picture);
+      console.log(result[0].picture);
       setUsers(result);
     };
 

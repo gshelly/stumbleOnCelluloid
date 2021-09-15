@@ -16,7 +16,7 @@ function Rating(props) {
     let userId = localStorage.getItem('userId')
     // if (!props.isLoggedIn && props.movieId) {
   
-      axios.get('http://localhost:8001/api/movie/rating/' + props.movieId)  // Avg Movie Rating for all user(guest and loggedin)
+      axios.get('http://localhost:8000/api/movie/rating/' + props.movieId)  // Avg Movie Rating for all user(guest and loggedin)
         .then(response => {
           localStorage.setItem("movieRating",response.data[0].movieAvgRating)
           setMovieRating(response.data[0])
@@ -25,7 +25,7 @@ function Rating(props) {
     // }
     // else {
       if (props.isLoggedIn && props.movieId) {
-        axios.get('http://localhost:8001/api/movie/rating/' + userId + '/' + props.movieId, {
+        axios.get('http://localhost:8000/api/movie/rating/' + userId + '/' + props.movieId, {
           withCredentials: true
         })
           .then(response => {
@@ -45,7 +45,7 @@ function Rating(props) {
     console.log("displayMovieRating",displayMovieRating);
     if(localStorage.getItem("uRating")) {
       axios
-      .put("http://localhost:8001/api/movie/rating/edit/" + displayMovieRating._id, {
+      .put("http://localhost:8000/api/movie/rating/edit/" + displayMovieRating._id, {
         rating: newRating
       }, {
         withCredentials: true,
@@ -61,7 +61,7 @@ function Rating(props) {
     }
     else {
       axios
-      .post("http://localhost:8001/api/movie/rating/" + props.movieId, {
+      .post("http://localhost:8000/api/movie/rating/" + props.movieId, {
         rating: newRating
       }, {
         withCredentials: true,
@@ -79,7 +79,7 @@ function Rating(props) {
 
   const getMovieRating = () => {
     axios
-      .put("http://localhost:8001/api/movie/rating/avg/" + props.movieId, {}, {
+      .put("http://localhost:8000/api/movie/rating/avg/" + props.movieId, {}, {
         withCredentials: true,
       })
       .then((response) => {

@@ -24,7 +24,7 @@ function Movie(props) {
   let history = useHistory()
 
   useEffect(() => {
-    axios.get('http://localhost:8001/api/movie')
+    axios.get('http://localhost:8000/api/movie')
       .then(response => {
         setMovie(response.data[0])
         localStorage.setItem("MovieQestion", response.data[0].movieQuestion)

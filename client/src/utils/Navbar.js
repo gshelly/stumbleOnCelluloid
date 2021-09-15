@@ -9,7 +9,7 @@ function Navbar(props) {
   const handleLogout = (e) => {
     e.preventDefault();
     axios
-    .post("http://localhost:8001/api/logout", {}, {
+    .post("http://localhost:8000/api/logout", {}, {
       withCredentials: true,
     })
     .then((response) => {

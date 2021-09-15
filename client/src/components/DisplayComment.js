@@ -14,7 +14,7 @@ function DisplayComments(props) {
 
   useEffect(() => {
     if (props.movieId) {
-      axios.get('http://localhost:8001/api/movie/post/' + props.movieId)
+      axios.get('http://localhost:8000/api/movie/post/' + props.movieId)
         .then(response => {
           setMovieComments(response.data)
           setReloadsComments(!reloadComments)
@@ -34,7 +34,7 @@ function DisplayComments(props) {
 
   const handleDelete = (user) => {
     axios
-    .delete("http://localhost:8001/api/movie/post/delete/" + user._id, {
+    .delete("http://localhost:8000/api/movie/post/delete/" + user._id, {
       withCredentials: true,
     })
     .then((response) => {
