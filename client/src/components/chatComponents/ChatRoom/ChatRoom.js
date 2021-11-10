@@ -45,7 +45,7 @@ const ChatRoom = (props) => {
   }, [isTyping]);
 
   return (
-    <div style={{backgroundImage:`url(${background})`, backgroundSize:"cover", padding: "70px 0px"}}>
+    <div style={{backgroundImage:`url(${background})`, backgroundSize:"cover", padding: "70px 0px", height:"100vh"}}>
     <Paper className="display-chat-layout">
       <Grid container wrap="nowrap" spacing={2}>
       <div className="chat-room-top-bar">
